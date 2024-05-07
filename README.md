@@ -85,7 +85,7 @@ No topo da página, você verá as versões disponíveis (v1 e v2) para administ
 | Rent                          | /api/v1/Rent          | Manter contratos de aluguel          |
 
 > **Nota:** O administrador tem o papel de manter o cadastro das motos atualizado, gerar pedidos de entrega e controlar as notificações.
-  >> Na controller Rent, tomei a liberdade de incluir um endpoint que faz uso de uma **API pública** para pesquisa completa do CNPJ do entregador, em **`api/v1/Rent/DetailsCnpj/{cnpj}`**
+  >> Na controller Rent, tomei a liberdade de incluir um endpoint que faz uso de uma **API pública** para pesquisa completa do CNPJ do entregador, em **`api/v1/Rent/DetailsCnpj/{cnpj}`**. A ideia é completar os dados do entregador de forma automática, como os dados do endereço, email, situação da empresa, entre outros.
 
 ### 📱 Versão entregador
 
