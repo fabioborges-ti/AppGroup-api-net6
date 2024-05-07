@@ -1,0 +1,24 @@
+version: '3.9'
+name: infra
+services:
+  webapi:
+    image: ${DOCKER_REGISTRY-}appgrouprentalwebapi
+    build:
+      context: .
+      dockerfile: src/AppGroup.Rental.WebApi/Dockerfile
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+  postgresdb:
+    image: postgres
+    
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  portainer:
+    image: portainer/portainer-ce
+
+volumes:
+  portainer_data:
+ 
