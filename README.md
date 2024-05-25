@@ -45,6 +45,8 @@ pgadmin
 postgresdb
 rabbitmq
 portainer
+elasticsearch
+kibana
 ```
 
 Se estes foram listados, sucesso! 🤗 Já podemos fazer nossa primeira chamada da API. 👋🏼
@@ -58,6 +60,8 @@ Se estes foram listados, sucesso! 🤗 Já podemos fazer nossa primeira chamada 
 | portainer         | 9000          | http://localhost:9000                     |
 | rabbitmq          | 15672         | http://localhost:15672                    |
 | pgadmin           | 6002          | http://localhost:6002                     |
+| elasticsearch     | 9002          | http://localhost:9002                     |
+| kibana            | 5601          | http://localhost:5601                     |
 
 ### 🛟 Importante
 
@@ -129,6 +133,8 @@ Principais tecnologias e padrões envolvidos;
 - RabbitMQ;
 - MassTransit;
 - EntityFrameWorkCore e Dapper;
+- ElasticSearch
+- Kibana
 - FluentValidation;
 - Serilog;
 - RestSharp;
@@ -138,6 +144,7 @@ Principais tecnologias e padrões envolvidos;
 - Padrões de projeto
   - CQRS;
   - Chain of responsibility;
+  - Repository;
 - Arquitetura e modelagem de dados;
 - Versionamento de APIs;
 - xUnit;
