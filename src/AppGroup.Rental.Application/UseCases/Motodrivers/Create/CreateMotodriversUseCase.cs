@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Motodrivers.Create.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Motodrivers.Create;
 
@@ -15,6 +16,8 @@ public class CreateMotodriversUseCase : IRequestHandler<CreateMotodriversRequest
 
     public async Task<CreateMotodriversResponse> Handle(CreateMotodriversRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(CreateMotodriversUseCase), DateTime.UtcNow);
+
         var h1 = new CheckIfExistsHandler(_repository);
         var h2 = new SaveDataHandler(_repository);
 

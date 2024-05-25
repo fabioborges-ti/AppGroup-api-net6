@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Motorcycles.Update.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Motorcycles.Update;
 
@@ -15,6 +16,8 @@ public class UpdateMotorCycleUseCase : IRequestHandler<UpdateMotorCycleRequest, 
 
     public async Task<UpdateMotorCycleResponse> Handle(UpdateMotorCycleRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(UpdateMotorCycleUseCase), DateTime.UtcNow);
+
         var h1 = new CheckIfExistsHandler(_repository);
         var h2 = new UpdateDataHandler(_repository);
 

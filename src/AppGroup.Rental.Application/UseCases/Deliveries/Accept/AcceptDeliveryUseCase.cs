@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Deliveries.Accept.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Deliveries.Accept;
 
@@ -17,6 +18,8 @@ public class AcceptDeliveryUseCase : IRequestHandler<AcceptDeliveryRequest, Acce
 
     public async Task<AcceptDeliveryResponse> Handle(AcceptDeliveryRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(AcceptDeliveryUseCase), DateTime.UtcNow);
+
         var h1 = new GetMotodriverHandler(_motodriversRepository);
         var h2 = new SaveDataHandler(_deliveryRepository);
 
@@ -30,5 +33,10 @@ public class AcceptDeliveryUseCase : IRequestHandler<AcceptDeliveryRequest, Acce
                     ? request.ErrorMessage
                     : $"Order '{request.OrderId}' updated successfully."
         };
+    }
+
+    private object SearchPricesUseCase()
+    {
+        throw new NotImplementedException();
     }
 }

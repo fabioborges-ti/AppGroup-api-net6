@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Rentals.CreateRent.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Rentals.CreateRent;
 
@@ -19,6 +20,8 @@ public class RentUseCase : IRequestHandler<RentRequest, RentResponse>
 
     public async Task<RentResponse> Handle(RentRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(RentUseCase), DateTime.UtcNow);
+
         var h1 = new CheckIfExistPendingRentHandler(_rentRepository);
         var h2 = new GetDataDriverHandler(_motodriversRepository);
         var h3 = new GetDataPriceHandler(_motorcyclesRepository);

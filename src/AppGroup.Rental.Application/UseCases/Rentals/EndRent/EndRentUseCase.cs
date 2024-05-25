@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Rentals.EndRent.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 using System.Globalization;
 
 namespace AppGroup.Rental.Application.UseCases.Rentals.EndRent;
@@ -18,6 +19,8 @@ public class EndRentUseCase : IRequestHandler<EndRentRequest, EndRentResponse>
 
     public async Task<EndRentResponse> Handle(EndRentRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(EndRentUseCase), DateTime.UtcNow);
+
         var h1 = new GetRentDataHandler(_rentRepository);
         var h2 = new CheckPendingDeliveryHandler(_deliveryRepository);
         var h3 = new CalculateValueHandler();

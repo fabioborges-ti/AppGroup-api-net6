@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Motorcycles.Create.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Motorcycles.Create;
 
@@ -15,6 +16,8 @@ public class CreateMotorcyclesUseCase : IRequestHandler<CreateMotorcyclesRequest
 
     public async Task<CreateMotorcyclesResponse> Handle(CreateMotorcyclesRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(CreateMotorcyclesUseCase), DateTime.UtcNow);
+
         var h1 = new CheckIfExistsHandler(_repository);
         var h2 = new SaveDataHandler(_repository);
 

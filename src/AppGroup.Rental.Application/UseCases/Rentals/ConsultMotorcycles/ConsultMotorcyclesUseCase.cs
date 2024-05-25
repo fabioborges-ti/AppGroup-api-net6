@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Rentals.ConsultMotorcycles.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Rentals.ConsultMotorcycles;
 
@@ -15,6 +16,8 @@ public class ConsultMotorcyclesUseCase : IRequestHandler<ConsultMotorcyclesReque
 
     public async Task<ConsultMotorcyclesResponse> Handle(ConsultMotorcyclesRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(ConsultMotorcyclesUseCase), DateTime.UtcNow);
+
         var h1 = new GetDataHandler(_repository);
 
         await h1.Process(request);

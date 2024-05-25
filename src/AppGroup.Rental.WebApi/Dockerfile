@@ -11,6 +11,7 @@ WORKDIR /src
 COPY ["src/AppGroup.Rental.WebApi/AppGroup.Rental.WebApi.csproj", "src/AppGroup.Rental.WebApi/"]
 COPY ["src/AppGroup.Rental.Application/AppGroup.Rental.Application.csproj", "src/AppGroup.Rental.Application/"]
 COPY ["src/AppGroup.Rental.Domain/AppGroup.Rental.Domain.csproj", "src/AppGroup.Rental.Domain/"]
+COPY ["src/AppGroup.Rental.Logging/AppGroup.Rental.Logging.csproj", "src/AppGroup.Rental.Logging/"]
 COPY ["src/AppGroup.Rental.Infrastructure.RabbitMQ/AppGroup.Rental.Infrastructure.RabbitMQ.csproj", "src/AppGroup.Rental.Infrastructure.RabbitMQ/"]
 COPY ["src/AppGroup.Rental.Infrastructure.Database/AppGroup.Rental.Infrastructure.Database.csproj", "src/AppGroup.Rental.Infrastructure.Database/"]
 RUN dotnet restore "./src/AppGroup.Rental.WebApi/AppGroup.Rental.WebApi.csproj"

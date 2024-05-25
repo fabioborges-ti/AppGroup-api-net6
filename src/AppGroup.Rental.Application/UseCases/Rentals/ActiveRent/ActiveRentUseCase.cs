@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Rentals.ActiveRent.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Rentals.ActiveRent;
 
@@ -15,6 +16,8 @@ public class ActiveRentUseCase : IRequestHandler<ActiveRentRequest, ActiveRentRe
 
     public async Task<ActiveRentResponse> Handle(ActiveRentRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(ActiveRentUseCase), DateTime.UtcNow);
+
         var h1 = new GetDataHandler(_repository);
 
         await h1.Process(request);

@@ -24,6 +24,7 @@
     <ItemGroup>
       <ProjectReference Include="..\AppGroup.Rental.Domain\AppGroup.Rental.Domain.csproj" />
       <ProjectReference Include="..\AppGroup.Rental.Infrastructure.RabbitMQ\AppGroup.Rental.Infrastructure.RabbitMQ.csproj" />
+      <ProjectReference Include="..\AppGroup.Rental.Logging\AppGroup.Rental.Logging.csproj" />
     </ItemGroup>
 
 </Project>

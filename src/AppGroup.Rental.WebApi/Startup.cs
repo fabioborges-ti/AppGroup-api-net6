@@ -1,9 +1,9 @@
 ﻿using AppGroup.Rental.Application.Extensions;
 using AppGroup.Rental.Infrastructure.Database.Extensions;
-using AppGroup.Rental.WebApi.Core;
-using AppGroup.Rental.WebApi.Core.Extensions;
-using AppGroup.Rental.WebApi.Core.Middlewares;
+using AppGroup.Rental.WebApi.Extensions;
 using AppGroup.Rental.WebApi.Filters;
+using AppGroup.Rental.WebApi.Middlewares;
+using AppGroup.Rental.WebApi.Swagger;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
 using Asp.Versioning.Conventions;
@@ -38,7 +38,8 @@ public class Startup
 
         services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
-        services.AddApiVersioning(options =>
+        services
+            .AddApiVersioning(options =>
             {
                 options.DefaultApiVersion = new ApiVersion(1.0);
                 options.AssumeDefaultVersionWhenUnspecified = true;
@@ -48,10 +49,11 @@ public class Startup
                     new UrlSegmentApiVersionReader(),
                     new QueryStringApiVersionReader("api-version"),
                     new HeaderApiVersionReader("X-Version"),
-                    new MediaTypeApiVersionReader("x-version"));
+                    new MediaTypeApiVersionReader("x-version")
+                );
             })
-                .AddMvc(options => options.Conventions.Add(new VersionByNamespaceConvention()))
-                .AddApiExplorer(setup =>
+            .AddMvc(options => options.Conventions.Add(new VersionByNamespaceConvention()))
+            .AddApiExplorer(setup =>
             {
                 setup.GroupNameFormat = "'v'VVV";
                 setup.SubstituteApiVersionInUrl = true;
@@ -88,7 +90,9 @@ public class Startup
             options.DocExpansion(DocExpansion.List);
         });
 
-        app.UseMiddleware<ErrorHandlerMiddleware>();
+        app.UseRequestLogging();
+        app.UseRequestErrors();
+
         app.UseExceptionHandler("/error");
 
         app.UseHsts();

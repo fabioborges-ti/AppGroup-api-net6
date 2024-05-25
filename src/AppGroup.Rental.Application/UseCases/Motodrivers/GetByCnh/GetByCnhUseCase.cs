@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Motodrivers.GetByCnh.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Motodrivers.GetByCnh;
 
@@ -15,6 +16,8 @@ public class GetByCnhUseCase : IRequestHandler<GetByCnhRequest, GetByCnhResponse
 
     public async Task<GetByCnhResponse> Handle(GetByCnhRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(GetByCnhUseCase), DateTime.UtcNow);
+
         var h1 = new GetByCnhHandler(_repository);
 
         await h1.Process(request);

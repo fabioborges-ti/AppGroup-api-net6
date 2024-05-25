@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Deliveries.Get.Handllers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Deliveries.Get;
 
@@ -27,6 +28,8 @@ public class GetDeliveryUseCase : IRequestHandler<GetDeliveryRequest, GetDeliver
 
     public async Task<GetDeliveryResponse> Handle(GetDeliveryRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(GetDeliveryUseCase), DateTime.UtcNow);
+
         var h1 = new GetMotodriverSituationHandler(_motodriversRepository);
         var h2 = new GetDataHandler(_deliveryRepository);
         var h3 = new GetMotodriverHandler(_motodriversRepository);

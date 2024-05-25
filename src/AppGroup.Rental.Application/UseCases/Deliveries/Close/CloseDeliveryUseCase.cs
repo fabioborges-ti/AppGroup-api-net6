@@ -1,6 +1,7 @@
 ﻿using AppGroup.Rental.Application.UseCases.Deliveries.Close.Handlers;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Deliveries.Close;
 
@@ -10,7 +11,12 @@ public class CloseDeliveryUseCase : IRequestHandler<CloseDeliveryRequest, CloseD
     private readonly IDeliveryRepository _deliveryRepository;
     private readonly INotificationRepository _notificationRepository;
 
-    public CloseDeliveryUseCase(IMotodriversRepository motodriversRepository, IDeliveryRepository deliveryRepository, INotificationRepository notificationRepository)
+    public CloseDeliveryUseCase
+    (
+        IMotodriversRepository motodriversRepository,
+        IDeliveryRepository deliveryRepository,
+        INotificationRepository notificationRepository
+    )
     {
         _motodriversRepository = motodriversRepository;
         _deliveryRepository = deliveryRepository;
@@ -19,6 +25,8 @@ public class CloseDeliveryUseCase : IRequestHandler<CloseDeliveryRequest, CloseD
 
     public async Task<CloseDeliveryResponse> Handle(CloseDeliveryRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(CloseDeliveryUseCase), DateTime.UtcNow);
+
         var h1 = new GetMotodriverHandler(_motodriversRepository);
         var h2 = new CheckIfExistsHandler(_deliveryRepository);
         var h3 = new UpdateOrderHandler(_deliveryRepository);

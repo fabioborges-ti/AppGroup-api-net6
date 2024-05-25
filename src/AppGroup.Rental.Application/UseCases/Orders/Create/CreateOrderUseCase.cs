@@ -2,6 +2,7 @@
 using AppGroup.Rental.Domain.Interfaces.Message;
 using AppGroup.Rental.Domain.Interfaces.Repositories;
 using MediatR;
+using Serilog;
 
 namespace AppGroup.Rental.Application.UseCases.Orders.Create;
 
@@ -12,7 +13,13 @@ public class CreateOrderUseCase : IRequestHandler<CreateOrderRequest, CreateOrde
     private readonly INotificationRepository _notificationRepository;
     private readonly IMessage _message;
 
-    public CreateOrderUseCase(IOrderRepository orderRepository, IRentRepository rentRepository, INotificationRepository notificationRepository, IMessage message)
+    public CreateOrderUseCase
+    (
+        IOrderRepository orderRepository,
+        IRentRepository rentRepository,
+        INotificationRepository notificationRepository,
+        IMessage message
+    )
     {
         _orderRepository = orderRepository;
         _rentRepository = rentRepository;
@@ -22,6 +29,8 @@ public class CreateOrderUseCase : IRequestHandler<CreateOrderRequest, CreateOrde
 
     public async Task<CreateOrderResponse> Handle(CreateOrderRequest request, CancellationToken cancellationToken)
     {
+        Log.Information("{usecase} started at {time}", nameof(CreateOrderUseCase), DateTime.UtcNow);
+
         var h1 = new CreateOrderHandler(_orderRepository);
         var h2 = new GetAvaiablesMotodriversHandler(_rentRepository, _notificationRepository);
         var h3 = new CreateNotificationsHandler(_notificationRepository);

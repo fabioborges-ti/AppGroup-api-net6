@@ -26,19 +26,16 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
-        <PackageReference Include="Serilog.Formatting.Compact" Version="2.0.0" />
-        <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
-        <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
-        <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
-        <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+        <PackageReference Include="Npgsql" Version="6.0.11" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+        
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\AppGroup.Rental.Application\AppGroup.Rental.Application.csproj" />
         <ProjectReference Include="..\AppGroup.Rental.Infrastructure.Database\AppGroup.Rental.Infrastructure.Database.csproj" />
         <ProjectReference Include="..\AppGroup.Rental.Infrastructure.RabbitMQ\AppGroup.Rental.Infrastructure.RabbitMQ.csproj" />
+        <ProjectReference Include="..\AppGroup.Rental.Logging\AppGroup.Rental.Logging.csproj" />
     </ItemGroup>
 
     <ItemGroup>
